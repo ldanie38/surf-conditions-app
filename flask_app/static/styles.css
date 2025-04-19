@@ -1,0 +1,94 @@
+/* General page styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Flex container for layout */
+.container {
+    display: flex;
+    align-items: center; /* Align items vertically */
+    justify-content: space-between; /* Balanced space between form and image */
+    background: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto; /* Center the container on the page */
+}
+
+/* Form section styling */
+.form-section {
+    flex: 1; /* Each section takes equal space */
+    padding: 10px; /* Reduce padding to bring sections closer */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button {
+    background-color:lightblue;
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+h1 {
+    font-size: 24px;
+    color: #007BFF;
+    margin-bottom: 20px;
+}
+
+/* Styling for the message above the form */
+.form-section p {
+    font-size: 18px;
+    color: #007BFF;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* Image section styling */
+.image-section {
+    flex: 1; /* Image takes the remaining space */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px; /* Reduce spacing around the image */
+}
+
+.image-section img {
+    max-width: 550px; /* Limit width to make image fit better */
+    max-height: 550px; /* Limit height to scale appropriately */
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    object-fit: cover; /* Maintain aspect ratio */
+}
+
+
+

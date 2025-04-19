@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
     <title>Surf Conditions Finder</title>
 </head>
 <body>
-    <form action="/surf_conditions" method="POST">
-        <input type="text" name="location" placeholder="Enter a location" required>
-        <button type="submit">Get Surf Conditions</button>
-    </form>
+    <div class="container">
+        <!-- Form Section -->
+        <div class="form-section">
+            <h1>Surf Conditions App</h1>
+        
+            <form method="POST" action="/surf_conditions">
+                <label for="location"><strong>Please enter a location:</strong></label>
+                <input type="text" name="location" id="location" required placeholder="e.g., Playa Grande">
+                <button type="submit">Check Surf Conditions</button>
+            </form>
+        </div>
+    <div class="image-section">
+        <img src="{{ url_for('static', filename='img/index.jpg') }}" alt="Cool Surfing Image">
+    </div>
 </body>
 </html>
