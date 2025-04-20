@@ -1,0 +1,85 @@
+/* General Styles */
+body {
+    font-family: "Nunito", sans-serif;
+    background-color: #f0f8ff; /* Light blue like the ocean */
+    color: #333;
+    line-height: 1.6;
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    height: 100vh; /* Full viewport height */
+    width: 100vw; /* Full viewport width */
+    background-image: url('/static/img/conditions.jpg'); /* Path to your background image */
+    background-size: cover; 
+    background-repeat: no-repeat;/
+
+
+}
+
+/* Header Styling */
+h1 {
+
+    text-transform: capitalize;
+    background-color: #0077be; /* Deep ocean blue */
+    color: white;
+    padding: 20px;
+    text-align: center;
+    margin: 0;
+    
+}
+
+h2 {
+    text-align: center;
+    color: #005f8c;
+    margin-top: 10px;
+}
+
+/* List Styling */
+ul {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0;
+    margin: 20px auto;
+    width: 80%;
+    max-width: 600px;
+}
+
+li {
+    background: #e6f7ff; /* Soft light blue background for items */
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Highlight Important Info */
+strong {
+    color: #0077be;
+}
+
+/* Final Message Styling */
+p {
+    text-align: center;
+    background: #b3ecff;
+    border: 1px solid #0077be;
+    padding: 15px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    margin: 20px auto;
+    font-size: 1.1em;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    h1, h2 {
+        font-size: 1.5em;
+    }
+
+    p, ul li {
+        font-size: 1em;
+    }
+}
+
+
+
+
+

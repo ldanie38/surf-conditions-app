@@ -3,6 +3,10 @@
 <head>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+
     <title>Surf Conditions Finder</title>
 </head>
 <body>
@@ -10,12 +14,26 @@
         <!-- Form Section -->
         <div class="form-section">
             <h1>Surf Conditions App</h1>
-        
             <form method="POST" action="/surf_conditions">
-                <label for="location"><strong>Please enter a location:</strong></label>
+                <label for="location">Location:</label>
                 <input type="text" name="location" id="location" required placeholder="e.g., Playa Grande">
+                
+                <label for="country">Country:</label>
+                <input type="text" name="country" id="country" placeholder="e.g., Costa Rica">
+                
+                <label for="province">Province/State (optional):</label>
+                <input type="text" name="province" id="province" placeholder="e.g., Guanacaste">
+
+                <label for="latitude">Latitude (optional):</label>
+                <input type="text" name="latitude" id="latitude" placeholder="e.g., 10.2238">
+
+                <label for="longitude">Longitude (optional):</label>
+                <input type="text" name="longitude" id="longitude" placeholder="e.g., -85.8128">
+
+            
                 <button type="submit">Check Surf Conditions</button>
             </form>
+            
         </div>
     <div class="image-section">
         <img src="{{ url_for('static', filename='img/index.jpg') }}" alt="Cool Surfing Image">

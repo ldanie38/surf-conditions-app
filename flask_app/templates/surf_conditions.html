@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='condition.css') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
     <title>Surf Conditions</title>
 </head>
 <body>
@@ -10,6 +15,9 @@
         <li><strong>Wind Speed:</strong> {{ wind_speed }} m/s (roughly {{ wind_speed_mph }} mph)</li>
         <li><strong>Wind Direction:</strong> {{ wind_direction }}° ({{ wind_classification }})</li>
      </ul>
+        <p>{{ final_message }}</p>
+
+
 </body>
 </html>
 
