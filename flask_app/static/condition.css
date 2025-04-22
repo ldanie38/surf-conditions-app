@@ -1,6 +1,8 @@
 /* General Styles */
+
+
 body {
-    font-family: "Nunito", sans-serif;
+    font-family: "Roboto Mono", monospace;
     background-color: #f0f8ff; /* Light blue like the ocean */
     color: #333;
     line-height: 1.6;
@@ -10,17 +12,28 @@ body {
     width: 100vw; /* Full viewport width */
     background-image: url('/static/img/conditions.jpg'); /* Path to your background image */
     background-size: cover; 
-    background-repeat: no-repeat;/
+    background-repeat: no-repeat;
+    
+}
 
 
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.3); /* White overlay at 50% transparency */
+    z-index: -1; /* Sends it behind all content */
 }
 
 /* Header Styling */
 h1 {
 
     text-transform: capitalize;
-    background-color:lightblue; /* Deep ocean blue */
-    color: white;
+    /*background-color:lightblue; /* Deep ocean blue */
+    color:rgb(64, 61, 61);
     padding: 20px;
     text-align: center;
     margin: 0;
@@ -43,11 +56,11 @@ ul {
 }
 
 li {
-    background: #e6f7ff; /* Soft light blue background for items */
+    background:; /* Soft light blue background for items */
     margin: 10px 0;
     padding: 10px;
     border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* Highlight Important Info */
@@ -58,14 +71,14 @@ strong {
 /* Final Message Styling */
 p {
     text-align: center;
-    background: #b3ecff;
-    border: 1px solid #0077be;
+    background:;
     padding: 15px;
     border-radius: 10px;
     width: 80%;
     max-width: 600px;
     margin: 20px auto;
     font-size: 1.1em;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* Responsive Design */
