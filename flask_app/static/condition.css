@@ -40,7 +40,6 @@ body::before {
 h1 {
 
     text-transform: capitalize;
-    background-color:lightblue ; 
     color:rgb(64, 61, 61);
     padding: 20px;
     text-align: center;
