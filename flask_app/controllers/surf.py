@@ -139,8 +139,12 @@ def surf_conditions():
         wind_speed=wind_speed,
         wind_speed_mph=wind_speed_mph,
         wind_classification=wind_classification,
-        final_message=final_message
+        final_message=final_message,
+        lat=lat,
+        lng=lng
     )
+    
+
 
 
 @app.route("/test_geocoding", methods=["GET"])

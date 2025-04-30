@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY"></script>
     <title>Surf Conditions</title>
 </head>
 <body>
@@ -22,6 +23,19 @@
      </ul>
         <p>{{ final_message }}</p>
     </div>
+
+        <!-- Embedded Google Map -->
+        <div class="map-container">
+            <iframe
+            width="500"
+            height="450"
+            frameborder="0"
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            style="border:0; width: 100%;"
+            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCR3oDGLh4JBoSYOZedCAMQh7VY_63jVMw&q={{ lat }},{{ lng }}"
+            allowfullscreen>
+          </iframe>
+         </div>
 
 
 </body>
