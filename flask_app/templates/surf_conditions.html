@@ -10,31 +10,38 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.typekit.net/gqv8jnv.css">
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY"></script>
     <title>Surf Conditions</title>
 </head>
 <body>
+    <div class='nav'>
+        <h1>Surf Conditions for {{ location }}</h1>
+    </div>
+    
     <div class='box'>
-    <h1>Surf Conditions for {{ location }}</h1>
     <ul>
         <li><strong>Wave Height:</strong> {{ wave_height }} meters</li>
         <li><strong>Wind Speed:</strong> {{ wind_speed }} m/s (roughly {{ wind_speed_mph }} mph)</li>
         <li><strong>Wind Direction:</strong> {{ wind_direction }}° ({{ wind_classification }})</li>
+        <li><strong>Air Temperature:</strong> {{ air_temperature_f }}°F</li>
+
+        
      </ul>
         <p>{{ final_message }}</p>
     </div>
 
         <!-- Embedded Google Map -->
         <div class="map-container">
-            <iframe
+        <iframe
             width="500"
-            height="450"
+            height="350"
             frameborder="0"
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            style="border:0; width: 100%;"
+            style="border:0; width: 500px;"
             src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCR3oDGLh4JBoSYOZedCAMQh7VY_63jVMw&q={{ lat }},{{ lng }}"
             allowfullscreen>
-          </iframe>
+        </iframe>
+        
          </div>
 
 

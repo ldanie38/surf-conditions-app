@@ -8,16 +8,14 @@ import os
 api_key = os.getenv("GOOGLE_MAPS_API_KEY")  
 
 # Initialize GoogleV3 geolocator with my API key
-geolocator = GoogleV3(api_key="AIzaSyCR3oDGLh4JBoSYOZedCAMQh7VY_63jVMw")
+geolocator = GoogleV3(api_key="AIzaSyCR3oDGLh4JBoSYOZedCAMQh7VY_63jVMw") # gets the coordinates
 
-STORMGLASS_API_KEY = "5444b2d0-1b36-11f0-bda0-0242ac130003-5444b32a-1b36-11f0-bda0-0242ac130003"
+STORMGLASS_API_KEY = "5444b2d0-1b36-11f0-bda0-0242ac130003-5444b32a-1b36-11f0-bda0-0242ac130003" # gets surf/weather
 STORMGLASS_URL = "https://api.stormglass.io/v2/weather/point"
-
 
 @app.route('/')
 def index():
     return render_template('index.html')
-
 
 def classify_wind_direction(wind_direction, coastline_orientation):
     # Calculate difference between wind direction and coastline orientation
@@ -28,7 +26,6 @@ def classify_wind_direction(wind_direction, coastline_orientation):
         return "Offshore"
     else:
         return "Parallel to Shore"
-
 
 @app.route("/surf_conditions", methods=["POST"])
 def surf_conditions():
@@ -64,16 +61,19 @@ def surf_conditions():
     params = {
         "lat": lat,
         "lng": lng,
-        "params": "waveHeight,windSpeed,windDirection",
+        "params": "waveHeight,windSpeed,windDirection,airTemperature",
         "source": "sg"  # Primary source
     }
 
     # Mock Data for Development
+
     mock_response = {
-        'hours': [
-            {'waveHeight': {'sg': 0.95}, 'windDirection': {'sg': 240.33}, 'windSpeed': {'sg': 9.06}}
-        ]
+    'hours': [
+        {'waveHeight': {'sg': 0.95}, 'windDirection': {'sg': 240.33}, 'windSpeed': {'sg': 9.06}, 'airTemperature': {'sg': 18.5}}
+    ]
+    
     }
+    
 
     try:
         response = requests.get(STORMGLASS_URL, params=params, headers=headers)
@@ -88,11 +88,27 @@ def surf_conditions():
     except Exception as e:
         print(f"Error occurred: {e}. Switching to mock data.")
         surf_data = mock_response
+    # **DEBUGGING STEP: Print API response**
+    print("Stormglass API response:", surf_data)  
 
     # Extract specific data safely
     wave_height = surf_data.get('hours', [{}])[0].get('waveHeight', {}).get('sg', "No data available")
     wind_speed = surf_data.get('hours', [{}])[0].get('windSpeed', {}).get('sg', "No data available")
     wind_direction = surf_data.get('hours', [{}])[0].get('windDirection', {}).get('sg', "No data available")
+  
+    air_temperature = surf_data.get('hours', [{}])[0].get('airTemperature', {}).get('sg')
+
+    if air_temperature is not None and isinstance(air_temperature, (int, float)):
+        air_temperature_f = round((float(air_temperature) * 9/5) + 32, 2)
+    else:
+        air_temperature_f = "No data available"
+
+    print("Converted air temperature (°F):", air_temperature_f)
+
+
+
+
+
 
     # Convert wave height from meters to feet if data is available
     if wave_height != "No data available":
@@ -133,19 +149,17 @@ def surf_conditions():
     
     return render_template(
         "surf_conditions.html",
-        location=full_address,      # Full address provided by the user
-        wave_height=wave_height_ft, # Wave height in feet
+        location=full_address,
+        wave_height=wave_height_ft,
         wind_direction=wind_direction,
         wind_speed=wind_speed,
         wind_speed_mph=wind_speed_mph,
         wind_classification=wind_classification,
+        air_temperature_f=air_temperature_f,  
         final_message=final_message,
         lat=lat,
         lng=lng
     )
-    
-
-
 
 @app.route("/test_geocoding", methods=["GET"])
 def test_geocoding():

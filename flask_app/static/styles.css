@@ -63,6 +63,9 @@ h1 {
     font-size: 24px;
     color: #007BFF;
     margin-bottom: 20px;
+    font-family: "p22-typewriter", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 /* Styling for the message above the form */

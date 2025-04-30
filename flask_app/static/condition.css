@@ -13,6 +13,10 @@ body {
     background-image: url('/static/img/conditions.jpg'); /* Path to your background image */
     background-size: cover; 
     background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
     
 }
 
@@ -28,6 +32,10 @@ body::before {
     z-index: -1; /* Sends it behind all content */
 }
 
+.nav{
+    margin-top: 20px;
+}
+
 /* Header Styling */
 h1 {
 
@@ -37,6 +45,9 @@ h1 {
     padding: 20px;
     text-align: center;
     margin: 0;
+    font-family: "p22-typewriter", sans-serif;
+    font-weight: 400;
+    font-style: normal;
     
 }
 
@@ -44,6 +55,11 @@ h2 {
     text-align: center;
     color: #005f8c;
     margin-top: 10px;
+}
+
+.box{
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* List Styling */
@@ -59,8 +75,7 @@ li {
     background:; /* Soft light blue background for items */
     margin: 10px 0;
     padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+
 }
 
 /* Highlight Important Info */
@@ -78,19 +93,19 @@ p {
     max-width: 600px;
     margin: 20px auto;
     font-size: 1.1em;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+
 }
 
-/* Responsive Design */
-@media (max-width: 600px) {
-    h1, h2 {
-        font-size: 1.5em;
-    }
+    /* Responsive Design */
+    @media (max-width: 600px) {
+        h1, h2 {
+            font-size: 1.5em;
+        }
 
-    p, ul li {
-        font-size: 1em;
+        p, ul li {
+            font-size: 1em;
+        }
     }
-}
 
 
 
