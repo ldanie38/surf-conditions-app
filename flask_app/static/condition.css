@@ -40,7 +40,7 @@ body::before {
 h1 {
 
     text-transform: capitalize;
-    /*background-color:lightblue; /* Deep ocean blue */
+    background-color:lightblue ; 
     color:rgb(64, 61, 61);
     padding: 20px;
     text-align: center;
@@ -72,7 +72,7 @@ ul {
 }
 
 li {
-    background:; /* Soft light blue background for items */
+  /* Soft light blue background for items */
     margin: 10px 0;
     padding: 10px;
 
@@ -86,7 +86,7 @@ strong {
 /* Final Message Styling */
 p {
     text-align: center;
-    background:;
+   
     padding: 15px;
     border-radius: 10px;
     width: 80%;
