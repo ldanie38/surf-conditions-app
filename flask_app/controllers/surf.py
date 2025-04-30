@@ -61,7 +61,7 @@ def surf_conditions():
     params = {
         "lat": lat,
         "lng": lng,
-        "params": "waveHeight,windSpeed,windDirection,airTemperature",
+        "params": "waveHeight,windSpeed,windDirection,airTemperature,precipitation",
         "source": "sg"  # Primary source
     }
 
@@ -69,7 +69,9 @@ def surf_conditions():
 
     mock_response = {
     'hours': [
-        {'waveHeight': {'sg': 0.95}, 'windDirection': {'sg': 240.33}, 'windSpeed': {'sg': 9.06}, 'airTemperature': {'sg': 18.5}}
+        {'waveHeight': {'sg': 0.95}, 
+         'windDirection': {'sg': 240.33}, 
+         'windSpeed': {'sg': 9.06},'airTemperature': {'sg': 18.5},'precipitation': {'sg': 0.2} }
     ]
     
     }
@@ -95,7 +97,7 @@ def surf_conditions():
     wave_height = surf_data.get('hours', [{}])[0].get('waveHeight', {}).get('sg', "No data available")
     wind_speed = surf_data.get('hours', [{}])[0].get('windSpeed', {}).get('sg', "No data available")
     wind_direction = surf_data.get('hours', [{}])[0].get('windDirection', {}).get('sg', "No data available")
-  
+    precipitation = surf_data.get('hours', [{}])[0].get('precipitation', {}).get('sg', "No data available")
     air_temperature = surf_data.get('hours', [{}])[0].get('airTemperature', {}).get('sg')
 
     if air_temperature is not None and isinstance(air_temperature, (int, float)):
@@ -104,6 +106,24 @@ def surf_conditions():
         air_temperature_f = "No data available"
 
     print("Converted air temperature (°F):", air_temperature_f)
+    
+    if precipitation != "No data available":
+        precipitation_val = float(precipitation)
+        # Define thresholds for a simple chance-of-rain estimate:
+        # This logic is arbitrary and should be calibrated based on your needs.
+        if precipitation_val == 0:
+            chance_of_rain = 0
+        elif precipitation_val < 0.1:
+            chance_of_rain = 10
+        elif precipitation_val < 1:
+            chance_of_rain = 50
+        else:
+            chance_of_rain = 90
+        rain_message = f"There is roughly a {chance_of_rain}% chance of rain."
+    else:
+        rain_message = "Precipitation data is not available."
+        
+
 
 
 
@@ -155,7 +175,8 @@ def surf_conditions():
         wind_speed=wind_speed,
         wind_speed_mph=wind_speed_mph,
         wind_classification=wind_classification,
-        air_temperature_f=air_temperature_f,  
+        air_temperature_f=air_temperature_f, 
+        rain_message=rain_message, 
         final_message=final_message,
         lat=lat,
         lng=lng

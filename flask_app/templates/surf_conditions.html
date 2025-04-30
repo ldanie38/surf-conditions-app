@@ -24,33 +24,40 @@
     <div class='nav'>
         <h1>Surf Conditions for {{ location }}</h1>
     </div>
-    
-    <div class='box'>
-    <ul>
-        <li><strong>Wave Height:</strong> {{ wave_height }} meters</li>
-        <li><strong>Wind Speed:</strong> {{ wind_speed }} m/s (roughly {{ wind_speed_mph }} mph)</li>
-        <li><strong>Wind Direction:</strong> {{ wind_direction }}° ({{ wind_classification }})</li>
-        <li><strong>Air Temperature:</strong> {{ air_temperature_f }}°F</li>
 
+    <div class='middle'>
+        <div class='box'>
+            <ul>
+                <li><strong>Wave Height:</strong> {{ wave_height }} meters</li>
+                <li><strong>Wind Speed:</strong> {{ wind_speed }} m/s (roughly {{ wind_speed_mph }} mph)</li>
+                <li><strong>Wind Direction:</strong> {{ wind_direction }}° ({{ wind_classification }})</li>
+                <li><strong>Air Temperature:</strong> {{ air_temperature_f }}°F</li>
+                <li><strong>Chance of Rain:</strong>{{ rain_message }}</li>
         
-     </ul>
-        <p>{{ final_message }}</p>
+        
+                
+             </ul>
+                <p>{{ final_message }}</p>
+            </div>
+        
+                <!-- Embedded Google Map -->
+                <div class="map-container">
+                <iframe
+                    width="500"
+                    height="350"
+                    frameborder="0"
+                    style="border:0; width: 500px;"
+                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCR3oDGLh4JBoSYOZedCAMQh7VY_63jVMw&q={{ lat }},{{ lng }}"
+                    allowfullscreen>
+                </iframe>
+                
+                 </div>
+        
+        
+
     </div>
-
-        <!-- Embedded Google Map -->
-        <div class="map-container">
-        <iframe
-            width="500"
-            height="350"
-            frameborder="0"
-            style="border:0; width: 500px;"
-            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCR3oDGLh4JBoSYOZedCAMQh7VY_63jVMw&q={{ lat }},{{ lng }}"
-            allowfullscreen>
-        </iframe>
-        
-         </div>
-
-
+    
+    
 </body>
 </html>
 
