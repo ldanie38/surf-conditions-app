@@ -58,10 +58,11 @@ def surf_conditions():
 
     # Step 2: Fetch surf conditions from the Stormglass API
     headers = {"Authorization": STORMGLASS_API_KEY}
+    print("Headers:", headers) 
     params = {
         "lat": lat,
         "lng": lng,
-        "params": "waveHeight,windSpeed,windDirection,airTemperature,precipitation",
+        "params": "waveHeight,windSpeed,windDirection,airTemperature,precipitation,seaLevel",
         "source": "sg"  # Primary source
     }
 
@@ -71,7 +72,8 @@ def surf_conditions():
     'hours': [
         {'waveHeight': {'sg': 0.95}, 
          'windDirection': {'sg': 240.33}, 
-         'windSpeed': {'sg': 9.06},'airTemperature': {'sg': 18.5},'precipitation': {'sg': 0.2} }
+         'windSpeed': {'sg': 9.06},'airTemperature': {'sg': 18.5},'precipitation': {'sg': 0.2},
+         'seaLevel': {'sg': 1.8}}
     ]
     
     }
@@ -79,6 +81,9 @@ def surf_conditions():
 
     try:
         response = requests.get(STORMGLASS_URL, params=params, headers=headers)
+        # Debugging: Print response details
+        print("API Response Status Code:", response.status_code)
+        print("API Response Text:", response.text)
         if response.status_code == 200:
             surf_data = response.json()
             print("Using real API data for surf conditions.")
@@ -99,7 +104,9 @@ def surf_conditions():
     wind_direction = surf_data.get('hours', [{}])[0].get('windDirection', {}).get('sg', "No data available")
     precipitation = surf_data.get('hours', [{}])[0].get('precipitation', {}).get('sg', "No data available")
     air_temperature = surf_data.get('hours', [{}])[0].get('airTemperature', {}).get('sg')
+    tide_height = surf_data.get('hours', [{}])[0].get('seaLevel', {}).get('sg', "No data available")
 
+    #air_temp
     if air_temperature is not None and isinstance(air_temperature, (int, float)):
         air_temperature_f = round((float(air_temperature) * 9/5) + 32, 2)
     else:
@@ -107,6 +114,7 @@ def surf_conditions():
 
     print("Converted air temperature (°F):", air_temperature_f)
     
+    #precipitation
     if precipitation != "No data available":
         precipitation_val = float(precipitation)
         # Define thresholds for a simple chance-of-rain estimate:
@@ -123,12 +131,6 @@ def surf_conditions():
     else:
         rain_message = "Precipitation data is not available."
         
-
-
-
-
-
-
 
     # Convert wave height from meters to feet if data is available
     if wave_height != "No data available":
@@ -167,6 +169,26 @@ def surf_conditions():
 
     final_message = f"Surf Conditions for {location}:\n{surf_message}\n{wind_message}"
     
+    ##Classify High Tide vs. Low Tide
+    if tide_height != "No data available":
+        tide_value = float(tide_height)
+    
+    if tide_height != "No data available":
+        tide_value = float(tide_height)
+        
+        # Define basic tide thresholds (These should be adjusted based on local tide patterns)
+        if tide_value > 1.5:
+            tide_status = "High Tide"
+        elif tide_value < 0.5:
+            tide_status = "Low Tide"
+        else:
+            tide_status = "Mid Tide"
+
+        tide_message = f"The current tide level is {tide_value} meters, classified as {tide_status}."
+    else:
+        tide_message = "Tide data is not available."
+
+    
     return render_template(
         "surf_conditions.html",
         location=full_address,
@@ -176,7 +198,8 @@ def surf_conditions():
         wind_speed_mph=wind_speed_mph,
         wind_classification=wind_classification,
         air_temperature_f=air_temperature_f, 
-        rain_message=rain_message, 
+        rain_message=rain_message,
+        tide_message=tide_message, 
         final_message=final_message,
         lat=lat,
         lng=lng
