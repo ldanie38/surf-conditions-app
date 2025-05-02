@@ -41,6 +41,34 @@ window.addEventListener("scroll", function() {
 
 
 
+/* Tides */ 
+const times = tideData.map(entry => entry[0]);
+const trends = tideData.map(entry => entry[1] === "Incoming Tide" ? 1 : entry[1] === "Outgoing Tide" ? -1 : 0);
+
+const ctx = document.getElementById('tideChart').getContext('2d');
+new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: times,
+        datasets: [{
+            label: 'Tide Movement',
+            data: trends,
+            borderColor: '#0077be',
+            fill: false
+        }]
+    },
+    options: {
+        scales: {
+            y: { min: -1, max: 1, ticks: { stepSize: 1 } }
+        }
+    }
+});
+console.log("Tide Data:", tideData); // Debugging step
+
+
+
+
+
 
 
 

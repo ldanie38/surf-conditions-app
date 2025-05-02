@@ -2,14 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="{{ url_for('static', filename='condition.css') }}">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="static/img/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-48x48.png">
-    <link rel="manifest" href="/site.webmanifest">
-
-    <link rel="stylesheet" href="https://use.typekit.net/gqv8jnv.css">
-     <title>SurfQuest</title>
+    <title>SurfQuest</title>
 </head>
 <body>
 
@@ -25,7 +18,6 @@
                 <li><strong>Wind Direction:</strong> {{ wind_direction }}° ({{ wind_classification }})</li>
                 <li><strong>Air Temperature:</strong> {{ air_temperature_f }}°F</li>
                 <li><strong>Chance of Rain:</strong> {{ rain_message }}</li>
-                <li><strong>Tide:</strong> {{ tide_message }}</li>
 
             <p>{{ final_message }}</p>
         </div>

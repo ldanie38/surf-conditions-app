@@ -35,6 +35,7 @@ body::before {
 
 .nav{
     margin-top: 20px;
+    font-family: "p22-typewriter", sans-serif;
 }
 
 /* Header Styling */

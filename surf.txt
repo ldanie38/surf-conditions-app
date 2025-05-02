@@ -117,8 +117,6 @@ def surf_conditions():
     wind_direction = safe_convert(surf_data.get('hours', [{}])[0].get('windDirection', {}).get('sg', "No data available"))
     precipitation = safe_convert(surf_data.get('hours', [{}])[0].get('precipitation', {}).get('sg', "No data available"))
     air_temperature = safe_convert(surf_data.get('hours', [{}])[0].get('airTemperature', {}).get('sg', "No data available"))
-    tide_height = safe_convert(surf_data.get('hours', [{}])[0].get('seaLevel', {}).get('sg', "No data available"))
-
     
 
 
@@ -185,25 +183,6 @@ def surf_conditions():
 
     final_message = f"Surf Conditions for {location}:\n{surf_message}\n{wind_message}"
     
-    #tide logic
-    if tide_height != "No data available":
-        tide_value = float(tide_height)
-        
-        # Define basic tide thresholds (These should be adjusted based on local tide patterns)
-        if tide_value > 1.5:
-            tide_status = "High Tide"
-        elif tide_value < 0.5:
-            tide_status = "Low Tide"
-        else:
-            tide_status = "Mid Tide"
-
-        tide_message = f"The current tide level is {tide_value} meters, classified as {tide_status}."
-    else:
-        tide_message = "Tide data is not available."
-
-
-
-    
 
 
     return render_template(
@@ -216,7 +195,7 @@ def surf_conditions():
         wind_classification=wind_classification,
         air_temperature_f=air_temperature_f, 
         rain_message=rain_message, 
-        tide_message=tide_message,
+
         final_message=final_message,
         lat=lat,
         lng=lng
